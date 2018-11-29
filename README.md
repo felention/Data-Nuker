@@ -3,9 +3,11 @@ A simple bash script that'll make it hard to recover/figure out the name/content
 
 It's essentially a DBAN for files/directories rather than a partition/drive.
 
+This will work in the Windows Subsystem for Linux (WSL).
+
 ***To prevent accidental deletion of other files, the user must place the files they want erased into a temporary directory.***
 
-***Disclaimer: Depending on your system this'll only act as a secure erase. Systems such as Windows will remember the filename because of how the file system works.***
+***Disclaimer: Depending on your system this'll only act as a secure erase. Systems such as Windows will remember the filename because of how the file system works. There are work arounds though.***
 
 ### Setup
 To make sure it works properly, place ranchar.sh into your Documents directory. You can rename it and/or place it elsewhere as long as you update the location in nuke.sh
