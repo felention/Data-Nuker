@@ -20,42 +20,42 @@ if [[ $con == "Continue" ]] || [[ $2 == "f" ]]; then #The OR check for $2 == f i
     temp=$(cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1)
     mkdir "$temp"
     cd $_
-    mv ../"$1" .
+    mv -- ../"$1" .
     for c1 in {1..50}; do
       for f1 in *; do
         dd if=/dev/null of="$f1" 2>/dev/null
         dd if=/dev/zero of="$f1" bs=$RANDOM count=5 2>/dev/null
         dd if=/dev/urandom of="$f1" bs=$RANDOM count=5 2>/dev/null
-        mv "$f1" "$(cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1)" 2>/dev/null
+        mv -- "$f1" "$(cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1)" 2>/dev/null
       done
     done
     for c2 in {1..50}; do
       touch "$(cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1)"
       for f2 in *; do
-        mv "$f2" "$(cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1)" 2>/dev/null
+        mv -- "$f2" "$(cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1)" 2>/dev/null
       done
     done
     cd $ld
-    rm -rf "$temp/"
+    rm -rf -- "$temp/"
   elif [[ -d $1 ]]; then
     cd "$1"
     echo "Nuking files in $(pwd)"
-    find . -name "*" -depth -exec mv {} . \; 2>/dev/null
+    find . -name "*" -depth -exec mv -- {} . \; 2>/dev/null
     for c1 in {1..50}; do
       for f1 in *; do
         dd if=/dev/null of="$f1" 2>/dev/null
         dd if=/dev/zero of="$f1" bs=$RANDOM count=5 2>/dev/null
         dd if=/dev/urandom of="$f1" bs=$RANDOM count=5 2>/dev/null
-        mv "$f1" "$(cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1)" 2>/dev/null
+        mv -- "$f1" "$(cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1)" 2>/dev/null
       done
     done
     for c2 in {1..50}; do
       touch "$(cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1)"
       for f2 in *; do
-        mv "$f2" "$(cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1)" 2>/dev/null
+        mv -- "$f2" "$(cat /dev/urandom | tr -dc "a-zA-Z0-9" | fold -w 32 | head -n 1)" 2>/dev/null
       done
     done
-    rm -rf *
+    rm -rf -- *
     cd $ld
   fi
   echo "Finished."
