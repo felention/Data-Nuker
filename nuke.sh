@@ -21,6 +21,7 @@ if [[ $con == "Continue" ]] || [[ $2 == "f" ]]; then #The OR check for $2 == f i
     mkdir "$temp"
     cd $_
     mv -- ../"$1" .
+    find . -name ".*" -exec mv -- {} $RANDOM \; 2>/dev/null
     for c1 in {1..50}; do
       for f1 in *; do
         dd if=/dev/null of="$f1" 2>/dev/null
@@ -41,6 +42,7 @@ if [[ $con == "Continue" ]] || [[ $2 == "f" ]]; then #The OR check for $2 == f i
     cd "$1"
     echo "Nuking files in $(pwd)"
     find . -name "*" -depth -exec mv -- {} . \; 2>/dev/null
+    find . -name ".*" -exec mv -- {} $RANDOM \; 2>/dev/null
     for c1 in {1..50}; do
       for f1 in *; do
         dd if=/dev/null of="$f1" 2>/dev/null
